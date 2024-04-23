@@ -41,6 +41,16 @@ body{
     font-size: 4vw;
 
 }
+#homeP4{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: brown;
+    position: absolute;
+    translate: 42vw -21vw;
+}
+#homeP4 h2{
+    font-size: 4vw;
+
+}
 
 .carouselImg img{
     width: 10vw;
@@ -55,6 +65,7 @@ body{
     display: flex;
     justify-content: space-around;
 }
+
 .footerr{
     background-color: #4d4c4c;
     width: 100%;
@@ -75,4 +86,8 @@ body{
 }
 .marginLeftManual{
     margin-left: 10vw;
+}
+#descpD{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
