@@ -12,15 +12,44 @@ body{
     background-color: #4d4c4c;
 }
 #homeP{
-color: aliceblue;
-position: absolute;
-translate: 48vw -22vw;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: brown;
+    position: absolute;
+    translate: 44vw -22vw;
 }
+#homeP h2{
+    font-size: 4.5vw;
+
+}
+#homeP2{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: brown;
+    position: absolute;
+    translate: 34vw -21vw;
+}
+#homeP2 h2{
+    font-size: 4vw;
+
+}
+#homeP3{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: brown;
+    position: absolute;
+    translate: 40vw -21vw;
+}
+#homeP3 h2{
+    font-size: 4vw;
+
+}
+
 .carouselImg img{
     width: 10vw;
     height: 25vw;
     object-fit: cover;
     
+}
+#lupa img{
+    width: 2vw;
 }
 #cardzz{
     display: flex;
