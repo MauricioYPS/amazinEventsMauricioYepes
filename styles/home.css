@@ -1,93 +1,134 @@
-body{
-    background-color: #6e6e6e;
+body {
+    background-color: #D1BB9E;
 }
-#logo{
+
+#logo {
     width: 8vw;
     border-radius: 12%;
 }
-#homeItem{
+
+#homeItem {
     margin-left: 43vw;
 }
-#navBg{
-    background-color: #4d4c4c;
+
+#navBg {
+    background-color: #A79277;
 }
-#homeP{
+.footerr {
+    background-color: #A79277;
+    width: 100%;
+    height: 5vw;
+    padding: 0;
+}
+
+#homeP {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: brown;
     position: absolute;
     translate: 44vw -22vw;
 }
-#homeP h2{
+
+#homeP h2 {
     font-size: 4.5vw;
 
 }
-#homeP2{
+
+#homeP2 {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: brown;
     position: absolute;
     translate: 34vw -21vw;
 }
-#homeP2 h2{
+
+#homeP2 h2 {
     font-size: 4vw;
 
 }
-#homeP3{
+
+#homeP3 {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: brown;
     position: absolute;
     translate: 40vw -21vw;
 }
-#homeP3 h2{
+
+#homeP3 h2 {
     font-size: 4vw;
 
 }
-#homeP4{
+
+#homeP4 {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: brown;
     position: absolute;
     translate: 42vw -21vw;
 }
-#homeP4 h2{
+
+#homeP4 h2 {
     font-size: 4vw;
 
 }
 
-.carouselImg img{
+#homeP5 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: brown;
+    position: absolute;
+    translate: 44vw -21vw;
+}
+
+#homeP5 h2 {
+    font-size: 4vw;
+
+}
+
+.carouselImg img {
     width: 10vw;
     height: 25vw;
     object-fit: cover;
-    
+
 }
-#lupa img{
+
+#lupa img {
     width: 2vw;
 }
-#cardzz{
+
+#cardzz {
     display: flex;
     justify-content: space-around;
 }
 
-.footerr{
+
+
+#socialIcon img {
+    width: 3vw;
+}
+
+#socialIcon2 img {
+    width: 3vw;
+}
+
+#socialIcon3 img {
+    width: 3vw;
+}
+
+#bgNavBg {
     background-color: #4d4c4c;
-    width: 100%;
-    height: 5vw;
-    padding: 0;
 }
-#socialIcon img{
-    width: 4vw;
-}
-#socialIcon2 img{
-    width: 4vw;
-}
-#socialIcon3 img{
-    width: 4vw;
-}
-#bgNavBg{
-    background-color: #4d4c4c;
-}
-.marginLeftManual{
+
+.marginLeftManual {
     margin-left: 10vw;
 }
-#descpD{
+
+#descpD {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
+}
+
+#wood table {
+    border: black solid 1px;
+}
+
+#wood th {
+    border: solid 1px black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
