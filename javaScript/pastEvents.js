@@ -224,6 +224,35 @@ function crearTarjetas(tarjetaPadre, eventos) {
     }
 }
 }
+const currentDate = new Date(data.currentDate)
+      let divPapa = document.querySelector("#esternosPE")
+
+    const eventosPE = data.events.filter(event => new Date(event.date) <= currentDate)
+
+    const categoriasPE = []
+    eventosPE.forEach(event =>{
+      if (!categoriasPE.includes(event.category)) {
+        categoriasPE.push(event.category);
+      }
+      
+    })
+
+    for (let i = 0; i < categoriasPE.length; i++) {
+
+      let checkOrg = categoriasPE[i];
+      let nuevoCheckBox = document.createElement("div");
+      nuevoCheckBox.classList.add("navBg")
+      nuevoCheckBox.classList.add("m-3")
+      nuevoCheckBox.innerHTML = `
+      <div>
+          <input  type="checkbox" value="" id="flexCheck${i}">
+          <label  for="flexCheck${i}">
+              ${checkOrg}
+          </label>
+      </div>
+      `
+    divPapa.appendChild(nuevoCheckBox)
+  }
 
 
 

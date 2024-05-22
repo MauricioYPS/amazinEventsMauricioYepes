@@ -14,6 +14,15 @@ body {
 #navBg {
     background-color: #A79277;
 }
+#navBgH{
+    background-color: #A79277;
+}
+#navBgP {
+    background-color: #A79277;
+}
+#navBgU{
+    background-color: #A79277;
+}
 
 .footerr {
     background-color: #A79277;
@@ -99,12 +108,36 @@ body {
     width: 2vw;
 }
 
+#esternos{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+#esternosPE{
+    display: flex;
+    width: 100%;
+}
+#zzz{
+    display: flex;
+    justify-content: center;
+}
+#zzz1{
+    display: flex;
+    justify-content: center;
+}
+#zzz2{
+    display: flex;
+    justify-content: center;
+}
+
 #cardzz {
     display: flex;
     justify-content: space-around;
 }
-
-
+#esternosUCE{
+    display: flex;
+    width: 100%;
+}
 
 #socialIcon img {
     width: 3vw;
