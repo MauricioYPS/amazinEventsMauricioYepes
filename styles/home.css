@@ -23,12 +23,29 @@ body {
 #navBgU{
     background-color: #A79277;
 }
+.txtt{
+    text-align: center;
+}
+.borderf{
+    border: solid 2px red;
+}
 
 .footerr {
     background-color: #A79277;
     width: 100%;
     height: 5vw;
     padding: 0;
+}
+.footerText{    
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+
+}
+.mediaIcons{
+display: flex;
+justify-content: space-around;
+width: 20vw;
 }
 
 #homeP {

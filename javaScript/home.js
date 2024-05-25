@@ -201,6 +201,11 @@ let tarjetaPadre = document.querySelector("#cardzz")
 crearTarjetas(tarjetaPadre, data.events)
 
 function crearTarjetas(tarjetaPadre, eventos) {
+  tarjetaPadre.innerHTML = '';
+  if (eventos.length === 0){
+    tarjetaPadre.innerHTML = '<h2 class="txtt">There are no matches in your search</h2>'
+    return;
+  }
   for (let i = 0; i < eventos.length; i++) {
     let evento = eventos[i];
 
@@ -218,65 +223,75 @@ function crearTarjetas(tarjetaPadre, eventos) {
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Price : ${evento.price}
                 <div class="card-body marginLeftManual">
-                    <a href="/details.html" class="card-link">Details</a>
+                    <a href="/details.html?id=${evento._id}" class="btn btn-secondary">Details</a>
                 </div>
             </li>
         </ul>`
 
     tarjetaPadre.appendChild(nuevaTarjeta);
   }
+    let zaza = new Array(eventos)
+    let jaja = zaza[0]
+    console.log(jaja);
+    console.log(jaja[0]._id);
+  
 } 
 
+let selectedCategories = [];
+let searchText = '';
 
-let divPapa = document.querySelector("#esternos")
-let categories = data.events.map(event => event.category)
-                            .filter((category, i, map) => map.indexOf(category) === i);
+function aplicarFiltros() {
+  let eventosFiltrados = data.events.filter(function(evento) {
+    let cumpleCategoria = selectedCategories.length === 0 || selectedCategories.indexOf(evento.category) !== -1;
+    let cumpleTexto = evento.name.toLowerCase().includes(searchText.toLowerCase()) ||
+                      evento.description.toLowerCase().includes(searchText.toLowerCase());
+    return cumpleCategoria && cumpleTexto;
+  });
 
+  crearTarjetas(tarjetaPadre, eventosFiltrados);
+}
 
-    for (let i = 0; i < categories.length; i++) {
+let divPapa = document.querySelector("#esternos");
+let categories = data.events.map(function(event) { return event.category; })
+                            .filter(function(category, i, map) { return map.indexOf(category) === i; });
 
-        let checkOrg = categories[i];
-        let nuevoCheckBox = document.createElement("div");
-        nuevoCheckBox.classList.add("navBg")
-        nuevoCheckBox.classList.add("m-3")
-        nuevoCheckBox.innerHTML = `
-        <div>
-            <input  type="checkbox" value="" id="flexCheck${i}">
-            <label  for="flexCheck${i}">
-                ${checkOrg}
-            </label>
-        </div>
-        `
-      divPapa.appendChild(nuevoCheckBox)
+for (let i = 0; i < categories.length; i++) {
+  let checkOrg = categories[i];
+  let nuevoCheckBox = document.createElement("div");
+  nuevoCheckBox.classList.add("navBg", "m-3");
+  nuevoCheckBox.innerHTML = `
+    <div>
+      <input type="checkbox" value="${checkOrg}" id="flexCheck${i}">
+      <label for="flexCheck${i}">
+        ${checkOrg}
+      </label>
+    </div>`;
+  divPapa.appendChild(nuevoCheckBox);
+
+  let checkbox = document.querySelector(`#flexCheck${i}`);
+  checkbox.addEventListener('change', function(event) {
+    let category = categories[i];
+    if (event.target.checked) {
+      selectedCategories.push(category);
+    } else {
+      selectedCategories = selectedCategories.filter(function(cat) {
+        return cat !== category;
+      });
     }
+    aplicarFiltros();
+  });
+}
 
+let buscador = document.querySelector("#search");
+buscador.addEventListener('input', function(event) {
+  searchText = event.target.value;
+  aplicarFiltros();
+});
 
+  
 
+  
 
-
-
-//   let divPadre = document.getElementById("esternos")
-//   pintarCheckBox(data,divPadre)
-
-// function pintarCheckBox (findCategories,divPadre){
-//    findCategories = data.events.map(event => event.category).filter((category, i, orig) => orig.indexOf(category) === i);
-// console.log(findCategories);
-
-//     let nuevoCheckBox = document.createElement("div");
-
-//     nuevoCheckBox.innerHTML = `
-//     <div class="col-1">
-//                 <div class="form-check">
-//                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-//                     <label class="form-check-label" for="flexCheckDefault">
-//                         Food Fair
-//                     </label>
-//                 </div>
-//             </div>
-//     `
-//     divPadre.appendChild(nuevoCheckBox);
-
-// }
 
 
 
