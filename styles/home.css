@@ -42,6 +42,12 @@ body {
     flex-direction: row;
 
 }
+#eventData{
+    border: solid 1px black;
+}
+#eventData text{
+    border: solid 1px black;
+}
 .mediaIcons{
 display: flex;
 justify-content: space-around;
@@ -188,4 +194,7 @@ width: 20vw;
 #wood th {
     border: solid 1px black;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+ td {
+    border: solid 1px black;
 }
