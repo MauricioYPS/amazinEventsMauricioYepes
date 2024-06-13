@@ -100,37 +100,49 @@ fetch(urlApi)
 
 
 const pastEvents = data.events.filter(event => {
-    const eventDate = new Date(event.date);
-    return eventDate < currentDate;
+  const eventDate = new Date(event.date);
+  return eventDate < currentDate;
 });
-
 
 const eventsByCategory = {};
 pastEvents.forEach(event => {
-    if (!eventsByCategory[event.category]) {
-        eventsByCategory[event.category] = [];
-    }
-    eventsByCategory[event.category].push(event);
+  if (!eventsByCategory[event.category]) {
+      eventsByCategory[event.category] = [];
+  }
+  eventsByCategory[event.category].push(event);
 });
 
 const categoryStats = {};
 Object.keys(eventsByCategory).forEach(category => {
-    const events = eventsByCategory[category];
-    const totalRevenue = events.reduce((total, event) => total + event.price * event.assistance, 0);
-    const totalCapacity = events.reduce((total, event) => total + event.capacity, 0);
-    const totalAssistance = events.reduce((total, event) => total + event.assistance, 0);
-    const averageAttendance = (totalAssistance / events.length).toFixed(2);
-    const attendancePercentage = ((totalAssistance / totalCapacity) * 100).toFixed(2);
+  const events = eventsByCategory[category];
+  const totalRevenue = events.reduce((total, event) => total + event.price * event.assistance, 0);
+  const totalCapacity = events.reduce((total, event) => total + event.capacity, 0);
+  const totalAssistance = events.reduce((total, event) => total + event.assistance, 0);
+  const averageAttendance = totalAssistance === 0 ? 0 : (totalAssistance / events.length).toFixed(2);
+  const attendancePercentage = totalCapacity === 0 ? 0 : ((totalAssistance / totalCapacity) * 100).toFixed(2);
 
-    categoryStats[category] = {
-        totalRevenue,
-        averageAttendance,
-        attendancePercentage
-    };
+  categoryStats[category] = {
+      totalRevenue,
+      averageAttendance,
+      attendancePercentage
+  };
 });
 
 console.log("Estadísticas por categoría:");
 console.log(categoryStats);
+
+const tbodys = document.getElementById('pastEventData');
+
+tbodys.innerHTML = "";
+
+Object.keys(categoryStats).forEach(category => {
+  const stats = categoryStats[category];
+
+  const newRow = tbodys.insertRow();
+  newRow.insertCell().textContent = category;
+  newRow.insertCell().textContent = "$" + stats.totalRevenue;
+  newRow.insertCell().textContent = stats.attendancePercentage + "%";
+});
 
 
 })
