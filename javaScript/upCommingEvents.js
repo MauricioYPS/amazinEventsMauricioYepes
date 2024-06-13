@@ -1,4 +1,4 @@
-import { urlApi } from "../modules/modules.js"
+import { urlApi,crearTarjetas } from "../modules/modules.js"
 
 let tarjetaPadre = document.querySelector("#cardzz");
 let divPapa = document.querySelector("#esternosUCE");
@@ -32,39 +32,39 @@ fetch(urlApi)
       divPapa.appendChild(nuevoCheckBox);
     }
 
-    function crearTarjetas(tarjetaPadre, eventos) {
-      tarjetaPadre.innerHTML = '';
-      if (eventos.length === 0) {
+    // function crearTarjetas(tarjetaPadre, eventos) {
+    //   tarjetaPadre.innerHTML = '';
+    //   if (eventos.length === 0) {
 
-        tarjetaPadre.innerHTML = `
-    <h2 class="txtt">There are no matches in your search</h2>'
-    `
-        return;
-      }
-      for (let i = 0; i < eventos.length; i++) {
-        let evento = eventos[i];
-        if (new Date(data.currentDate) < new Date(evento.date)) {
-          let nuevaTarjeta = document.createElement("div");
-          nuevaTarjeta.classList.add("card", "m-3", "tarjetaImgs");
-          nuevaTarjeta.style.width = "18rem";
+    //     tarjetaPadre.innerHTML = `
+    // <h2 class="txtt">There are no matches in your search</h2>'
+    // `
+    //     return;
+    //   }
+    //   for (let i = 0; i < eventos.length; i++) {
+    //     let evento = eventos[i];
+    //     if (new Date(data.currentDate) < new Date(evento.date)) {
+    //       let nuevaTarjeta = document.createElement("div");
+    //       nuevaTarjeta.classList.add("card", "m-3", "tarjetaImgs");
+    //       nuevaTarjeta.style.width = "18rem";
 
-          nuevaTarjeta.innerHTML = `
-      <img src="${evento.image}" class="card-img-top" alt="...">
-      <div class="card-body">
-          <h5 class="card-title">${evento.name}</h5>
-          <p class="card-text">${evento.description}</p>
-      </div>
-      <ul class="list-group list-group-flush">
-          <li class="list-group-item">Price : ${evento.price}
-              <div class="card-body marginLeftManual">
-                  <a href="/details.html?id=${evento._id}" class="btn btn-secondary">Details</a>
-              </div>
-          </li>
-      </ul>`;
-          tarjetaPadre.appendChild(nuevaTarjeta);
-        }
-      }
-    }
+    //       nuevaTarjeta.innerHTML = `
+    //   <img src="${evento.image}" class="card-img-top" alt="...">
+    //   <div class="card-body">
+    //       <h5 class="card-title">${evento.name}</h5>
+    //       <p class="card-text">${evento.description}</p>
+    //   </div>
+    //   <ul class="list-group list-group-flush">
+    //       <li class="list-group-item">Price : ${evento.price}
+    //           <div class="card-body marginLeftManual">
+    //               <a href="/details.html?id=${evento._id}" class="btn btn-secondary">Details</a>
+    //           </div>
+    //       </li>
+    //   </ul>`;
+    //       tarjetaPadre.appendChild(nuevaTarjeta);
+    //     }
+    //   }
+    // }
 
     function filtrarEventos() {
       let textoBusqueda = buscador.value.toLowerCase();

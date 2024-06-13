@@ -59,6 +59,20 @@ fetch(urlApi)
         `
     })
 
+    let categories = data.events
+    console.log(categories);
+    
+    let groupedByCategory = categories.reduce((acc, item) => {
+        if (!acc[item.category]) {
+          acc[item.category] = [];
+        }
+        acc[item.category].push(item);
+        return acc;
+      }, {});
+       
+      console.log(groupedByCategory);
+
+
 
 })
 

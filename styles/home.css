@@ -42,10 +42,6 @@ body {
     flex-direction: row;
 
 }
-.statsLetter{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    border: solid 2px red;
-}
 .mediaIcons{
 display: flex;
 justify-content: space-around;

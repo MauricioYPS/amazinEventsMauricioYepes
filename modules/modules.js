@@ -43,19 +43,5 @@ export function aplicarFiltros(array,arrayCategories,textsearch,tarjetaPadre) {
     }
   
   }
-  export function llenarDetalles(evento) {
-    document.querySelector("#detailsDiv img").src = evento.image;
-    document.querySelector("#descpD .card-title").textContent = evento.name;
-  
-    let subtitulos = document.querySelectorAll("#descpD .card-subtitle");
-  
-    subtitulos[0].textContent = `Date: ${evento.date}`;
-    subtitulos[1].textContent = `Description: ${evento.description}`;
-    subtitulos[2].textContent = `Category: ${evento.category}`;
-    subtitulos[3].textContent = `Place: ${evento.place}`;
-    subtitulos[4].textContent = `Capacity: ${evento.capacity}`;
-    subtitulos[5].textContent = evento.assistance ? `Assistance: ${evento.assistance}` : `Estimate: ${evento.estimate}`;
-    subtitulos[6].textContent = `Price: ${evento.price}`;
-  }
 
-  
+
