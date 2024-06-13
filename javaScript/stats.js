@@ -4,7 +4,6 @@ fetch(urlApi)
 .then(Response => Response.json())
 .then(data =>{
     let eventsAssist = data.events.filter(event => event.assistance)
-    // console.log(eventsAssist);
     let eventPercentAssist = eventsAssist.map(event => {
 
         let percent = (event.assistance / event.capacity ) * 100
@@ -15,18 +14,13 @@ fetch(urlApi)
         
 
     })
-    // console.log(eventPercentAssist);
     let porcentaje = eventPercentAssist.map(event => event.percent)
-    // console.log(porcentaje);
     let mayorPorcentaje = Math.max(...porcentaje)
-    // console.log(mayorPorcentaje);
     let menorPorcentaje = Math.min(...porcentaje)
 
     let eventoMayor = eventPercentAssist.filter(e => e.percent == mayorPorcentaje)
-    // console.log(eventoMayor);
 
     let eventoMenor = eventPercentAssist.filter(e=> e.percent == menorPorcentaje)
-    // console.log(eventoMenor);
     eventoMayor.forEach(element => {
         let contenedorMPorcentaje = document.getElementById("mayorPorcentaje")
         contenedorMPorcentaje.innerHTML = `
@@ -43,13 +37,9 @@ fetch(urlApi)
     })
 
     let eventCapacitys = data.events
-    // console.log(eventCapacitys);
     let eventLargerCapacity = eventCapacitys.map(event => (event.capacity) )
-    // console.log(eventLargerCapacity);
     let capacityMayor = Math.max(...eventLargerCapacity)
-    // console.log(capacityMayor);
     let capacityMayorName = eventCapacitys.filter(e => e.capacity == capacityMayor)
-    // console.log(capacityMayorName);
     capacityMayorName.forEach(element=>{
         let conetenedorMayorCapacidad = document.getElementById("mayorCapacidad")
 
@@ -59,19 +49,88 @@ fetch(urlApi)
         `
     })
 
-    let categories = data.events
-    console.log(categories);
-    
-    let groupedByCategory = categories.reduce((acc, item) => {
-        if (!acc[item.category]) {
-          acc[item.category] = [];
-        }
-        acc[item.category].push(item);
-        return acc;
-      }, {});
-       
-      console.log(groupedByCategory);
 
+
+    const currentDate = new Date(data.currentDate);
+    const upcomingEvents = data.events.filter(event => new Date(event.date) >= currentDate);
+
+    const categories = {};
+
+    upcomingEvents.forEach(event => {
+      const category = event.category;
+      if (!categories[category]) {
+        categories[category] = {
+          totalRevenue: 0,
+          totalCapacity: 0,
+          totalAssistance: 0,
+          eventCount: 0
+        };
+      }
+
+      categories[category].totalRevenue += event.price * event.capacity;
+      categories[category].totalCapacity += event.capacity;
+      categories[category].totalAssistance += event.assistance || event.estimate || 0;
+      categories[category].eventCount += 1;
+    });
+
+    const result = Object.keys(categories).map(category => {
+      const { totalRevenue, totalCapacity, totalAssistance } = categories[category];
+      const attendancePercentage = ((totalAssistance / totalCapacity) * 100).toFixed(2);
+      return {
+        category,
+        totalRevenue,
+        attendancePercentage
+      };
+    });
+
+    const tbody = document.getElementById('eventData');
+
+    result.forEach((item, index) => {
+      if (index < tbody.rows.length) {
+        tbody.rows[index].cells[0].textContent = item.category;
+        tbody.rows[index].cells[1].textContent = item.totalRevenue;
+        tbody.rows[index].cells[2].textContent = item.attendancePercentage + '%';
+      } else {
+        const newRow = tbody.insertRow();
+        newRow.insertCell(0).textContent = item.category;
+        newRow.insertCell(1).textContent = item.totalRevenue;
+        newRow.insertCell(2).textContent = item.attendancePercentage + '%';
+      }
+    });
+
+
+const pastEvents = data.events.filter(event => {
+    const eventDate = new Date(event.date);
+    return eventDate < currentDate;
+});
+
+
+const eventsByCategory = {};
+pastEvents.forEach(event => {
+    if (!eventsByCategory[event.category]) {
+        eventsByCategory[event.category] = [];
+    }
+    eventsByCategory[event.category].push(event);
+});
+
+const categoryStats = {};
+Object.keys(eventsByCategory).forEach(category => {
+    const events = eventsByCategory[category];
+    const totalRevenue = events.reduce((total, event) => total + event.price * event.assistance, 0);
+    const totalCapacity = events.reduce((total, event) => total + event.capacity, 0);
+    const totalAssistance = events.reduce((total, event) => total + event.assistance, 0);
+    const averageAttendance = (totalAssistance / events.length).toFixed(2);
+    const attendancePercentage = ((totalAssistance / totalCapacity) * 100).toFixed(2);
+
+    categoryStats[category] = {
+        totalRevenue,
+        averageAttendance,
+        attendancePercentage
+    };
+});
+
+console.log("Estadísticas por categoría:");
+console.log(categoryStats);
 
 
 })

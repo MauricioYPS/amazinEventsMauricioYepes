@@ -4,15 +4,12 @@ const urlEventos = "https://aulamindhub.github.io/amazing-api/events.json"
 let url = window.location.href
 
 url = new URL(url).searchParams.get("id")
-console.log(url);
-
 let contPDetails = document.getElementById('detailsDiv')
 document.addEventListener('DOMContentLoaded', (e) => {
     fetch(urlEventos)
         .then(Response => Response.json())
         .then(data => {
             let tarjeta = data.events.filter(evento => evento._id == url)
-            console.log(tarjeta);
             tarjeta.forEach(evento => {
                 contPDetails.innerHTML = `
                             <div class="row g-0">
