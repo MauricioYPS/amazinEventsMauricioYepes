@@ -1,11 +1,11 @@
-//empezamos por 3era vez
-import { data,searchText,selectedCategories,tarjetaPadre } from "../javaScript/home.js";
+//empezamos por 4ta vez
+export const urlApi = "https://aulamindhub.github.io/amazing-api/events.json"
 
-export function aplicarFiltros() {
-    let eventosFiltrados = data.events.filter(function(evento) {
-      let cumpleCategoria = selectedCategories.length === 0 || selectedCategories.indexOf(evento.category) !== -1;
-      let cumpleTexto = evento.name.toLowerCase().includes(searchText.toLowerCase()) ||
-                        evento.description.toLowerCase().includes(searchText.toLowerCase());
+export function aplicarFiltros(array,arrayCategories,textsearch,tarjetaPadre) {
+    let eventosFiltrados = array.filter(function(evento) {
+      let cumpleCategoria = arrayCategories.length === 0 || arrayCategories.indexOf(evento.category) !== -1;
+      let cumpleTexto = evento.name.toLowerCase().includes(textsearch.toLowerCase()) ||
+                        evento.description.toLowerCase().includes(textsearch.toLowerCase());
       return cumpleCategoria && cumpleTexto;
     });
   
